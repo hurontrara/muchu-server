@@ -9,10 +9,10 @@ on:
     branches : [ develop ]
 
 env:
-  PROJECT_NAME: "${{secrets.PROJECT_NAME}}"
-  BUCKET_NAME: "${{secrets.BUCKET_NAME}}"
-  CODE_DEPLOY_APP_NAME: "${{secrets.CODE_DEPLOY_APP_NAME}}"
-  DEPLOYMENT_GROUP_NAME: "${{secrets.DEPLOYMENT_GROUP_NAME}}"
+  PROJECT_NAME: ${{ secrets.PROJECT_NAME }}
+  BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+  CODE_DEPLOY_APP_NAME: ${{ secrets.CODE_DEPLOY_APP_NAME }}
+  DEPLOYMENT_GROUP_NAME: ${{ secrets.DEPLOYMENT_GROUP_NAME }}
 
 
 jobs:
