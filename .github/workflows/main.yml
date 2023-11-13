@@ -1,0 +1,66 @@
+# This is a basic workflow to help you get started with Actions
+name: Build and Deploy Spring Boot to AWS EC2
+
+on:
+  push:
+    branches: [ main ]
+
+  pull_request:
+    branches : [ develop ]
+
+env:
+  PROJECT_NAME: "${{secrets.PROJECT_NAME}}"
+  BUCKET_NAME: "${{secrets.BUCKET_NAME}}"
+  CODE_DEPLOY_APP_NAME: "${{secrets.CODE_DEPLOY_APP_NAME}}"
+  DEPLOYMENT_GROUP_NAME: "${{secrets.DEPLOYMENT_GROUP_NAME}}"
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout source code.
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Create config file(application.properties)
+      - run: touch ./src/main/resources/application.properties
+      - run: echo "${{secrets.APPLICATION}}" > ./src/main/resources/application.properties
+
+      - name: Upload artifact
+      - uses: actions/upload-artifact@v2
+        with:
+          name: application.properties
+          path: ./src/main/resources/application.properties
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        shell: bash
+
+      - name: Build with Gradle
+        run: ./gradlew build
+        shell: bash
+
+      - name: Make Zip File
+        run: zip -qq -r ./$GITHUB_SHA.zip .
+        shell: bash
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Upload to S3
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$BUCKET_NAME/$PROJECT_NAME/$GITHUB_SHA.zip
+
+
+      - name: Code Deploy
+        run: aws deploy create-deployment --application-name $CODE_DEPLOY_APP_NAME --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name $DEPLOYMENT_GROUP_NAME --s3-location bucket=$BUCKET_NAME,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
