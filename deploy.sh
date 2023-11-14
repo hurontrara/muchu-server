@@ -5,7 +5,7 @@ APP_NAME=muchu
 JAR_NAME=$(ls $REPOSITORY/build/libs/ | grep '.jar' | tail -n 1)
 JAR_PATH=$REPOSITORY/build/libs/$JAR_NAME
 
-CURRENT_PID=$(pgrep -f $APP_NAME)
+CURRENT_PID=$(sudo netstat -lntp | grep 8080 | awk '{print $7}' | cut -d'/' -f1)
 
 echo "> $CURRENT_PID"
 
