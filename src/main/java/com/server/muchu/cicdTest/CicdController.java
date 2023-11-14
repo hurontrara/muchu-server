@@ -15,7 +15,6 @@ public class CicdController {
 
         return "test/test.html";
 
-
     }
 
 }
