@@ -14,8 +14,8 @@ hooks:
   AfterInstall:
     - location: deploy.sh
       timeout: 60
-      runas: ec2-user
+      runas: ubuntu
   ApplicationStart:
     - location: deploy.sh
       timeout: 60
-      runas: ec2-user
+      runas: ubuntu
