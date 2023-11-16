@@ -1,0 +1,14 @@
+<h1>아이디 찾기</h1>
+
+<span th:if="${username}">
+    아이디는 <span th:text="${username}"></span> 입니다.
+</span>
+<span th:unless="${username}">
+    아이디가 존재하지 않습니다.
+</span>
+
+<a th:href="@{/login}">로그인</a>
+<br>
+<a th:href="@{/find-id}">아이디 다시 찾아보기</a>
+
+

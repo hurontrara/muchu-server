@@ -1,0 +1,18 @@
+<h1>가입한 이메일을 입력하시면, ID 값을 알려드리겠습니다.</h1>
+<br>
+<br>
+<br>
+<form action="/find-id" th:action th:object="${userFindIdDto}" method="post">
+
+    <label for="email">이메일:</label>
+    <input type="text" id="email" th:field="*{email}" class="form-control"
+           th:errorclass="field-error" required><br>
+    <div class="field-error" th:errors="*{email}"></div>
+    <br>
+
+    <button type="submit">아이디 찾기</button>
+
+</form>
+
+
+
