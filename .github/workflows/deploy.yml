@@ -28,7 +28,20 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+          
+      - name: Setup MySQL
+        uses: samin/mysql-action@v1
+        with:
+          character set server: 'utf8' 
+          mysql database: ${{ secrets.DB_NAME }} 
+          mysql user: ${{ secrets.DB_USER }}
+          mysql password: ${{ secrets.DB_PASSWORD }}
 
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.1.0
+        with:
+          redis-version: 6
+          
       - name: Create config file(application.properties)
         run: |
           touch ./src/main/resources/application.properties
