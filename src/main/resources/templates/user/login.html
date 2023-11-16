@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+<h1>Login Page</h1>
+
+<a th:href="@{/signup}">회원가입</a>
+<a th:href="@{/find-id}">아이디 찾기</a>
+<a th:href="@{/find-password}">비밀번호 찾기</a>
+
+
+<form action="/login" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+    <button type="submit">Login</button>
+</form>
+</body>
+</html>
