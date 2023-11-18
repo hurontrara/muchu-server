@@ -33,7 +33,6 @@ public class UserService {
     @Value("${domain}")
     private String domain;
     private final UserRepository userRepository;
-    private final UserPasswordChangeRepository userPasswordChangeRepository;
     private final JavaMailSender mailSender;
     private final PasswordEncoder passwordEncoder;
     public boolean signUpValueCheckByDto(UserSignUpDto userSignUpDto, BindingResult bindingResult) {
@@ -80,9 +79,9 @@ public class UserService {
 
     public void changePasswordByDtoAndUUID(UserChangePasswordDto userChangePasswordDto, String uuid, Model model) {
 
-        Optional<UserPasswordChange> optionalUserPasswordChange = userPasswordChangeRepository.findByUuid(uuid);
+        Optional<User> optionalUser = userRepository.findByUuid(uuid);
 
-        optionalUserPasswordChange.ifPresent(userPasswordChange -> passwordChangeProcess(userPasswordChange, userChangePasswordDto.getPassword(), model));
+        optionalUser.ifPresent(user -> passwordChangeProcess(user, userChangePasswordDto.getPassword(), model));
 
     }
 
@@ -119,13 +118,11 @@ public class UserService {
 
     }
 
+    // user 객체의 uuid 값을 널로 만드는 과정 포함(변경 했으므로, 더 이상 유효하지 않게 하도록)
+    private void passwordChangeProcess(User user, String password, Model model) {
 
-
-    private void passwordChangeProcess(UserPasswordChange UserPasswordChange, String password, Model model) {
-
-        User user = UserPasswordChange.getUser();
-
-        user.ChangePassword(passwordEncoder.encode(password));
+        user.changePassword(passwordEncoder.encode(password));
+        user.setUuid(null);
 
         model.addAttribute("changeSuccess", true);
 
