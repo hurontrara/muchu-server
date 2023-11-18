@@ -16,7 +16,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
@@ -81,7 +80,7 @@ public class UserController {
             return "user/findId";
         }
 
-        Optional<User> optionalUser = userRepository.findByEmailAndSocialIsFalse(userFindIdDto.getEmail());
+        Optional<User> optionalUser = userRepository.findByEmail(userFindIdDto.getEmail());
         optionalUser.ifPresent(user -> model.addAttribute("username", optionalUser.get().getUsername()));
 
         return "user/findIdResult";
@@ -97,7 +96,7 @@ public class UserController {
     @PostMapping(value = "/find-password")
     public String findPassword(@Validated @ModelAttribute UserFindPasswordDto userFindPasswordDto, BindingResult bindingResult, Model model) {
 
-        // 형식 오류
+        // 형식 오류 체크
         if (bindingResult.hasErrors()) {
             return "user/findPassword";
         }
@@ -127,31 +126,14 @@ public class UserController {
         return "user/changePasswordResult";
     }
 
-    // 로그아웃
-    @GetMapping("/log-out")
-    public String logout(HttpServletResponse response) {
-
-        Cookie accessToken = new Cookie("accessToken", null);
-        Cookie refreshToken = new Cookie("refreshToken", null);
-
-        accessToken.setMaxAge(0);
-        refreshToken.setMaxAge(0);
-
-
-        response.addCookie(accessToken);
-        response.addCookie(refreshToken);
-
-        return "user/logOut";
-    }
 
     // 마이페이지
     @GetMapping("/mypage")
     public String myPage(Model model) {
 
         SecurityUser securityUser = getSecurityUser();
-        User user = securityUser.getUser();
 
-        model.addAttribute("user", user);
+        model.addAttribute("user", securityUser);
 
         return "user/myPage";
 

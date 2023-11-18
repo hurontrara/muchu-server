@@ -24,18 +24,18 @@ public class SecurityUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
 
-        Optional<User> user = securityRepository.findByUsername(username);
+        Optional<User> optionalUser = securityRepository.findByUsername(username);
 
         // 아이디가 존재하지 않을 때의 예외 처리
-        return user.map(SecurityUser::new).orElseThrow(() -> new SecurityException(LOGIN_FAIL.getMessage()));
+        return optionalUser.map(SecurityUser::new).orElseThrow(() -> new SecurityException(LOGIN_FAIL.getMessage()));
     }
 
     public UserDetails loadUserById(Long id) {
 
-        Optional<User> user = securityRepository.findById(id);
+        Optional<User> optionalUser = securityRepository.findById(id);
 
         // id 값이 존재하지 않을 때의 예외 처리
-        return user.map(SecurityUser::new).orElseThrow(() -> new SecurityException(LOGIN_FAIL.getMessage()));
+        return optionalUser.map(SecurityUser::new).orElseThrow(() -> new SecurityException(LOGIN_FAIL.getMessage()));
     }
 
 

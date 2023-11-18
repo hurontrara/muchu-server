@@ -36,7 +36,12 @@ public class FilterChainConfig {
                 .and().addFilterAfter(loginAuthenticationFilter, ExceptionTranslationFilter.class)
                 .addFilterAfter(jwtAuthenticationFilter, LoginAuthenticationFilter.class)
                 .addFilterAfter(myPageAuthenticationFilter, JWTAuthenticationFilter.class)
-                .exceptionHandling(handler -> handler.authenticationEntryPoint(entryPoint));
+                .exceptionHandling(handler -> handler.authenticationEntryPoint(entryPoint))
+                .logout()
+                .logoutUrl("/logout")
+                .deleteCookies("accessToken")
+                .deleteCookies("refreshToken")
+                .logoutSuccessUrl("/");
 
         return http.build();
     }

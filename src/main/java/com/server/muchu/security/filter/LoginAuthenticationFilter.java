@@ -21,7 +21,7 @@ public class LoginAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        // 인증
+        // 인증 (이후, 아이디와 패스워드가 계정 정보가 일치함을 보장)
         LoginAuthentication loginAuthentication = filterService.authenticateLogin(request);
 
         // 액세스 토큰, 리프레시 토큰 발급

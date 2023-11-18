@@ -27,6 +27,12 @@
     <div class="field-error" th:errors="*{nickname}"></div>
     <br>
 
+    <label for="nickname">이름:</label>
+    <input type="text" id="name" th:field="*{name}" class="form-control"
+           th:errorclass="field-error" required>
+    <div class="field-error" th:errors="*{name}"></div>
+    <br>
+
 
     <label for="email">이메일:</label>
     <input type="text" id="email" th:field="*{email}" class="form-control"

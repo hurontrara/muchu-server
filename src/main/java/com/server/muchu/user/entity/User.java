@@ -49,7 +49,15 @@ public class User extends BaseEntity {
     @Column(name = "USER_SOCIAL")
     private String social;
 
-    public void ChangePassword(String password) {
+    @Column(name = "USER_UUID")
+    private String uuid;
+
+    // 비밀번호 변경을 위한 uuid -> 비밀번호 변경 요청 시에 발급
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public void changePassword(String password) {
         this.password = password;
     }
 
