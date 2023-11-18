@@ -7,7 +7,7 @@
 <h1>Main Page</h1>
 <a th:unless="${user}" th:href="@{/login}">Login</a>
 <a th:unless="${user}" th:href="@{/signup}">SignUp</a>
-<a th:if="${user}" th:href="@{/log-out}">Logout</a>
+<a th:if="${user}" th:href="@{/logout}">Logout</a>
 <a th:if="${user}" th:href="@{/mypage}">myPage</a>
 </body>
 </html>
