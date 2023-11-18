@@ -91,17 +91,29 @@ public class UserService {
 
         // dto 객체 생성
         String uuid = UUID.randomUUID().toString();
-        MailingDto mailingDto = new MailingDto(user.getEmail(), domain, uuid);
+        MailingDto mailingDto = new MailingDto(domain, user.getEmail(), uuid);
 
-        // 엔티티 저장 후 이메일 보내기 (이메일 보내기 실패하면, 엔티티는 저장되지 않음(트랜잭션))
-        UserPasswordChange userPasswordChange = UserPasswordChange.builder().user(user).uuid(uuid).build();
-        userPasswordChangeRepository.save(userPasswordChange);
+        // user 객체에 uuid 필드 저장(이후 테이블에 uuid 필드 저장) 후 이메일 보내기 (이메일 보내기 실패하면, 엔티티는 저장되지 않음(트랜잭션))
+        user.setUuid(uuid);
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(mailingDto.getTo());
-        message.setSubject(mailingDto.getSubject());
-        message.setText(mailingDto.getMessage());
-        mailSender.send(message);
+        // 예외 차후 개선
+        try {
+
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setTo(mailingDto.getTo());
+            helper.setSubject(mailingDto.getSubject());
+            helper.setText(mailingDto.getMessage(), true);
+
+            mailSender.send(message);
+
+        } catch (MessagingException e) {
+
+            throw new RuntimeException(e);
+
+        }
+
 
         model.addAttribute("mailingSuccess", true);
 
