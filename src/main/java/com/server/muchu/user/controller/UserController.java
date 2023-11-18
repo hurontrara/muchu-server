@@ -80,7 +80,7 @@ public class UserController {
             return "user/findId";
         }
 
-        Optional<User> optionalUser = userRepository.findByEmailAndSocialIsFalse(userFindIdDto.getEmail());
+        Optional<User> optionalUser = userRepository.findByEmail(userFindIdDto.getEmail());
         optionalUser.ifPresent(user -> model.addAttribute("username", optionalUser.get().getUsername()));
 
         return "user/findIdResult";
@@ -132,9 +132,8 @@ public class UserController {
     public String myPage(Model model) {
 
         SecurityUser securityUser = getSecurityUser();
-        User user = securityUser.getUser();
 
-        model.addAttribute("user", user);
+        model.addAttribute("user", securityUser);
 
         return "user/myPage";
 

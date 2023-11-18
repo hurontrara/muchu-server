@@ -45,7 +45,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
 
-        String[] excludePath = {"/tokenCheck"};
+        String[] excludePath = {"/tokenCheck", "/mypage"};
         String path = request.getRequestURI();
         return Arrays.stream(excludePath).noneMatch(path::startsWith);
 

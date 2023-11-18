@@ -5,15 +5,13 @@ import com.server.muchu.user.dto.UserChangePasswordDto;
 import com.server.muchu.user.dto.UserFindPasswordDto;
 import com.server.muchu.user.dto.UserSignUpDto;
 import com.server.muchu.user.entity.UserGrade;
-import com.server.muchu.user.entity.UserPasswordChange;
-import com.server.muchu.user.repository.UserPasswordChangeRepository;
 import com.server.muchu.user.repository.UserRepository;
 import com.server.muchu.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +19,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -47,7 +47,7 @@ public class UserService {
             bindingResult.addError(new FieldError("userSignUpDto", "username", "이미 존재하는 아이디입니다."));
         } else if (userRepository.findByNickname(userSignUpDto.getNickname()).isPresent()) {
             bindingResult.addError(new FieldError("userSignUpDto", "nickname", "이미 존재하는 닉네임입니다."));
-        } else if (userRepository.findByEmailAndSocialIsFalse(userSignUpDto.getEmail()).isPresent()) {
+        } else if (userRepository.findByEmail(userSignUpDto.getEmail()).isPresent()) {
             bindingResult.addError(new FieldError("userSignUpDto", "email", "이미 존재하는 이메일입니다."));
         }
 
@@ -61,6 +61,7 @@ public class UserService {
                 .username(userSignUpDto.getUsername())
                 .password(passwordEncoder.encode(userSignUpDto.getPassword()))
                 .grade(UserGrade.USER)
+                .name(userSignUpDto.getName())
                 .nickname(userSignUpDto.getNickname())
                 .email(userSignUpDto.getEmail())
                 .build();
@@ -71,7 +72,7 @@ public class UserService {
 
     public void findPasswordByDto(UserFindPasswordDto userFindPasswordDto, Model model) {
 
-        Optional<User> optionalUser = userRepository.findByEmailAndSocialIsFalse(userFindPasswordDto.getEmail());
+        Optional<User> optionalUser = userRepository.findByEmail(userFindPasswordDto.getEmail());
 
         optionalUser.ifPresent(user -> mailingProcess(user, model));
 

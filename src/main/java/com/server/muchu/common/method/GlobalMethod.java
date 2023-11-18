@@ -19,7 +19,7 @@ public class GlobalMethod {
 
         SecurityUser securityUser = (SecurityUser) authentication.getDetails();
 
-        return Optional.ofNullable(securityUser);
+        return Optional.of(securityUser);
     }
 
     // 이미 JWT 필터에 등록이 되어있는 페이지에서의 호출 -> 로그인된 사용자임이(토큰 유효) 보장된 상황

@@ -20,6 +20,9 @@ public class UserSignUpDto {
     @Pattern(regexp = "^[가-힣a-zA-Z0-9]{2,10}$", message = "2~10 글자의 한글, 영문, 숫자를 입력해주세요.")
     private String nickname;
 
+    @Pattern(regexp = "^[가-힣a-zA-Z]{2,10}$", message = "2~10 글자의 한글, 영문을 입력해주세요.")
+    private String name;
+
     @Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$", message = "적절한 이메일 형식으로 입력해주세요.")
     private String email;
 
