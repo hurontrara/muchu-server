@@ -47,6 +47,7 @@ public class LoginAuthentication implements Authentication {
 
     }
 
+    // 기능 사용 안함
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

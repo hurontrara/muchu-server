@@ -96,7 +96,7 @@ public class UserController {
     @PostMapping(value = "/find-password")
     public String findPassword(@Validated @ModelAttribute UserFindPasswordDto userFindPasswordDto, BindingResult bindingResult, Model model) {
 
-        // 형식 오류
+        // 형식 오류 체크
         if (bindingResult.hasErrors()) {
             return "user/findPassword";
         }
