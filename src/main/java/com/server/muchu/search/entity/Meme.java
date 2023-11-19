@@ -31,8 +31,4 @@ public class Meme extends BaseEntity {
     @Column(name = "MEME_CLUSTER")
     private int clusterNum;
 
-    @Column(name = "MEME_LINK", nullable = false)
-    private String link;
-
-
 }
