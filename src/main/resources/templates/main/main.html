@@ -9,5 +9,15 @@
 <a th:unless="${user}" th:href="@{/signup}">SignUp</a>
 <a th:if="${user}" th:href="@{/logout}">Logout</a>
 <a th:if="${user}" th:href="@{/mypage}">myPage</a>
+<br>
+
+<form action="/search" method="get">
+    <label for="keyword">검색 키워드를 입력하세요 :</label>
+    <input type="text" id="keyword" name="keyword" required><br>
+    <input type="hidden" name="page" value="1">
+    <button type="submit">검색</button>
+</form>
+
+
 </body>
 </html>
