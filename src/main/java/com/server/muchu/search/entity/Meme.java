@@ -17,7 +17,11 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "MEME_TB")
+@Table(name = "MEME_TB",
+        indexes = {
+                @Index(name = "cluster_index", columnList = "MEME_CLUSTER")
+        }
+)
 public class Meme extends BaseEntity {
 
     @Id
