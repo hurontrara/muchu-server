@@ -63,7 +63,7 @@ public class UserController {
         // 계정 생성
         userService.signUpByDto(userSignUpDto);
 
-        return "user/signUpSuccessAndToMain";
+        return "user/signUpSuccess";
     }
 
     // 아이디 찾기
