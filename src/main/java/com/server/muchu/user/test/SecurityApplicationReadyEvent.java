@@ -50,9 +50,21 @@ public class SecurityApplicationReadyEvent implements ApplicationListener<Applic
                 .email("someID3@naver.com")
                 .build();
 
+        User user4 = User.builder()
+                .username("someID4")
+                .password(passwordEncoder.encode("1q2w3e4r!"))
+                .grade(UserGrade.USER)
+                .name("name4")
+                .nickname("nickname4")
+                .email("sorkdksl7566@naver.com")
+                .build();
+
+
         em.persist(user1);
         em.persist(user2);
         em.persist(user3);
+        em.persist(user4);
+
 
     }
 
