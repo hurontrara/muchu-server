@@ -27,10 +27,10 @@ public class User extends BaseEntity {
     @Column(name = "USER_ID")
     private Long id;
 
-    @Column(name = "USER_USERNAME", nullable = false)
+    @Column(name = "USER_USERNAME")
     private String username;
 
-    @Column(name = "USER_PASSWORD", nullable = false)
+    @Column(name = "USER_PASSWORD")
     private String password;
 
     @Column(name = "USER_GRADE", nullable = false)
@@ -47,7 +47,8 @@ public class User extends BaseEntity {
     private String email;
 
     @Column(name = "USER_SOCIAL")
-    private String social;
+    @Enumerated(EnumType.STRING)
+    private OAuthProvider social;
 
     @Column(name = "USER_UUID")
     private String uuid;

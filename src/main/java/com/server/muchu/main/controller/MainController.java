@@ -14,7 +14,7 @@ import static com.server.muchu.common.method.GlobalMethod.getOptionalSecurityUse
 
 @Slf4j
 @Controller
-@RequestMapping("")
+@RequestMapping("/")
 public class MainController {
 
     @GetMapping
@@ -26,6 +26,11 @@ public class MainController {
         optionalSecurityUser.ifPresent(securityUser -> model.addAttribute("user", securityUser));
 
         return "main/main";
+    }
+
+    @GetMapping("/oauth")
+    public String oAuthPage() {
+        return "main/oauth";
     }
 
 }

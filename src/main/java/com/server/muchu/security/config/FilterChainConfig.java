@@ -31,12 +31,17 @@ public class FilterChainConfig {
         http.httpBasic().disable()
                 .formLogin().disable()
                 .csrf().disable()
+
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
                 .and().authorizeRequests().anyRequest().permitAll()
+
                 .and().addFilterAfter(loginAuthenticationFilter, ExceptionTranslationFilter.class)
                 .addFilterAfter(jwtAuthenticationFilter, LoginAuthenticationFilter.class)
                 .addFilterAfter(myPageAuthenticationFilter, JWTAuthenticationFilter.class)
+
                 .exceptionHandling(handler -> handler.authenticationEntryPoint(entryPoint))
+
                 .logout()
                 .logoutUrl("/logout")
                 .deleteCookies("accessToken")
