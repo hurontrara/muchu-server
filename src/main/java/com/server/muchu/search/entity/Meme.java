@@ -1,6 +1,5 @@
 package com.server.muchu.search.entity;
 
-import com.server.muchu.common.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +21,7 @@ import javax.persistence.*;
                 @Index(name = "cluster_index", columnList = "MEME_CLUSTER")
         }
 )
-public class Meme extends BaseEntity {
+public class Meme {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
