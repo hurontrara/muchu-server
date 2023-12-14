@@ -57,6 +57,7 @@ dependencies {
 
 	implementation 'ognl:ognl:3.1.26'
 
+	implementation 'org.json:json:20231013'
 
 }
 
