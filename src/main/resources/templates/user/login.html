@@ -121,14 +121,26 @@
                                 <span class="font-weight-normal">or login with</span>
                             </div>
                             <div class="btn-wrapper my-4 text-center">
-                                <button class="btn btn-primary btn-icon-only text-facebook mr-2" type="button" aria-label="facebook button" title="facebook button">
-                                    <span aria-hidden="true" class="fab fa-facebook-f"></span>
+                                <button class="btn btn-facebook" type="button">
+                                    <span class="mr-1"><span class="fab fa-facebook-f"></span></span>
+                                    <a th:href="@{'https://nid.naver.com/oauth2.0/authorize?'
+                                         + 'response_type=code'
+                                         + '&client_id=' + ${@environment.getProperty('oauth.naver.client-id')}
+                                         +'&state=test'
+                                         +'&redirect_uri=' + ${@environment.getProperty('domain')} + '/oauth2/code/naver'}" role="button">
+                                        Login with Naver
+                                    </a>
                                 </button>
-                                <button class="btn btn-primary btn-icon-only text-twitter mr-2" type="button" aria-label="twitter button" title="twitter button">
-                                    <span aria-hidden="true" class="fab fa-twitter"></span>
-                                </button>
-                                <button class="btn btn-primary btn-icon-only text-facebook" type="button" aria-label="github button" title="github button">
-                                    <span aria-hidden="true" class="fab fa-github"></span>
+                                <br>
+                                <br>
+                                <button class="btn btn-facebook" type="button">
+                                    <span class="mr-1"><span class="fab fa-facebook-f"></span></span>
+                                    <a th:href="@{'https://kauth.kakao.com/oauth/authorize?'
+                                         + 'client_id=' + ${@environment.getProperty('oauth.kakao.client-id')}
+                                         + '&redirect_uri=' + ${@environment.getProperty('domain')} + '/oauth2/code/kakao'
+                                         + '&response_type=code'}" role="button">
+                                        Login with Kakao
+                                    </a>
                                 </button>
                             </div>
                             <div class="d-block d-sm-flex justify-content-center align-items-center mt-4">

@@ -17,7 +17,7 @@ import static com.server.muchu.common.method.GlobalMethod.getOptionalSecurityUse
 @RequestMapping("/")
 public class MainController {
 
-    @GetMapping
+    @GetMapping("/")
     public String mainPage(Model model) {
 
         // 널 값이 가능함을 명시화
@@ -26,11 +26,6 @@ public class MainController {
         optionalSecurityUser.ifPresent(securityUser -> model.addAttribute("user", securityUser));
 
         return "main/main";
-    }
-
-    @GetMapping("/oauth")
-    public String oAuthPage() {
-        return "main/oauth";
     }
 
 }

@@ -10,7 +10,10 @@
     <p>등급: <span th:text="*{grade}"></span></p>
     <p>닉네임: <span th:text="*{nickname}"></span></p>
     <p>이메일: <span th:text="*{email}"></span></p>
-    <p>소셜로그인 여부: <span th:text="*{social}"></span></p>
+    <p>소셜로그인 여부:
+        <span th:if="${user.social == null}" th:text="'소셜로그인 아님'"></span>
+        <span th:if="${user.social != null}" th:text="'소셜로그인'"></span>
+    </p>
     <br>
     <a th:href="@{/}">메인페이지로 돌아가기</a>
 </div>
