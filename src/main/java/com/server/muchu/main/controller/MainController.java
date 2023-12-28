@@ -14,10 +14,10 @@ import static com.server.muchu.common.method.GlobalMethod.getOptionalSecurityUse
 
 @Slf4j
 @Controller
-@RequestMapping("")
+@RequestMapping("/")
 public class MainController {
 
-    @GetMapping
+    @GetMapping("/")
     public String mainPage(Model model) {
 
         // 널 값이 가능함을 명시화

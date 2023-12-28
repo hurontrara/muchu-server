@@ -151,8 +151,11 @@ public class FilterService {
     public void saveTokensToCookie(String accessToken, String refreshToken, HttpServletResponse response) {
 
         Cookie accessCookie = new Cookie("accessToken", accessToken);
+        accessCookie.setPath("/");
         accessCookie.setMaxAge(ACCESS_TOKEN_EXPIRE_TIME_FOR_COOKIE);
+
         Cookie refreshCookie = new Cookie("refreshToken", refreshToken);
+        refreshCookie.setPath("/");
         refreshCookie.setMaxAge(REFRESH_TOKEN_EXPIRE_TIME_FOR_COOKIE);
 
         response.addCookie(accessCookie);
