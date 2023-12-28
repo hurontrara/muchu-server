@@ -22,12 +22,9 @@ public class SearchController {
                              @RequestParam(name = "page", defaultValue = "1") int page,
                              Model model) {
 
-        // api를 통해 keyword를 넘기고, ML 관련 결과값을 받아옴
-        // 여기서는 군집 번호를 받아왔다고 생각(아직 ML 파트 구현이 안된 관계로)
         int clusterNum = searchService.getClusterNumByKeyword(keyword);
 
-        // 띄워줄 페이지
-        searchService.pageSettingByClusterNum(clusterNum, model, page);
+        searchService.pageSettingByClusterNum(clusterNum, model, page, keyword);
 
         return "search/searchResult";
 
