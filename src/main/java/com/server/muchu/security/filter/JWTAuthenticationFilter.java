@@ -1,5 +1,6 @@
 package com.server.muchu.security.filter;
 
+import com.server.muchu.security.error.CustomSecurityException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -37,7 +38,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
         if (filterService.accessTokenCheck(cookies, request, response, filterChain)) return;
         else if (filterService.refreshTokenCheck(cookies, request, response, filterChain)) return;
-        else throw new SecurityException(LOGIN_NEED.getMessage());
+        else throw new CustomSecurityException(LOGIN_NEED.getMessage());
 
     }
 

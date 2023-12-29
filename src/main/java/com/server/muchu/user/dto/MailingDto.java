@@ -19,7 +19,7 @@ public class MailingDto {
         this.to = to;
         this.uuid = uuid;
 
-        this.message = baseMessage + String.format("<a href='%s'>비밀번호 변경 링크</a>", "http://" + domain + "/change-password?uuid=" + uuid);
+        this.message = baseMessage + String.format("<a href='%s'>비밀번호 변경 링크</a>", domain + "/change-password?uuid=" + uuid);
 
     }
 

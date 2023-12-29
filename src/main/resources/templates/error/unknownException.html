@@ -97,49 +97,17 @@
     </nav>
 </header>
 <main>
-    <!-- Section -->
-    <section class="section section-lg">
+    <div class="section section-header pb-7">
         <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-12 col-lg-12 mb-5">
-                    <!-- Contact Card -->
-                    <div class="card bg-primary shadow-soft border-light p-2 p-md-3 p-lg-5">
-                        <div class="card-header">
-                            <div class="row justify-content-center">
-                                <div class="col-12 col-md-8 text-center mb-5">
-                                    <h1 class="display-2 mb-3">비밀번호 변경</h1>
-                                    <p class="lead">변경할 비밀번호를 입력해주세요.</p>
-                                </div>
-                            </div>
-                            <div class="row mb-5">
-                            </div>
-                        </div>
-                        <form action="/change-password" th:action th:object="${userChangePasswordDto}" method="post">                            <!-- Form -->
-                            <div class="form-group">
-                                <label for="password">New Password</label>
-                                <div class="input-group mb-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span class="far fa-envelope"></span></span>
-                                    </div>
-                                    <input type="password" id="password" th:field="*{password}" class="form-control"
-                                           th:errorclass="field-error" required><br>
-                                </div>
-                                <p th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}"></p>
-                            </div>
-                            <div class="card-footer px-0 mx-auto" style="text-align: center;">
-                                <button type="submit" class="btn btn-primary">비밀번호 변경</button>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- End of Contact Card -->
-                </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8 text-center">
+                    <h1 class="display-2 mb-4">앗! 알 수 없는 오류입니다.</h1>
+                    <p class="lead mb-5">다시 시도해주세요.</p>
+                    <a class="btn btn-primary" th:href="@{/login}"><span class="fas fa-book-reader mr-2"></span>로그인</a></div>
             </div>
         </div>
-    </section>
-    <!-- End of section -->
+    </div>
 </main>
-<a id="producthunt-badge" href="https://www.producthunt.com/posts/neumorphism-ui?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-neumorphism-ui" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=200908&theme=dark" alt="Neumorphism UI - Neumorphism inspired UI web components, sections and pages | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
-
 </body>
 
 </html>
