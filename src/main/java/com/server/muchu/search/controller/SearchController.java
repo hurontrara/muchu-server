@@ -17,8 +17,9 @@ public class SearchController {
 
     private final SearchService searchService;
 
-    @GetMapping
-    public String searchPage(@RequestParam(name = "keyword") String keyword,
+    // ML 서버가 존재할 때의 코드 -> 현재는 ML 서버를 내렸기 때문에 /depreciated 로 매핑
+    @GetMapping("/depreciated")
+    public String searchPageDepreciated(@RequestParam(name = "keyword") String keyword,
                              @RequestParam(name = "page", defaultValue = "1") int page,
                              Model model) {
 
@@ -26,9 +27,26 @@ public class SearchController {
 
         searchService.pageSettingByClusterNum(clusterNum, model, page, keyword);
 
+        model.addAttribute("serverExist", true);
+
         return "search/searchResult";
 
     }
+
+    @GetMapping("")
+    public String searchPage(@RequestParam(name = "keyword") String keyword,
+                             @RequestParam(name = "page", defaultValue = "1") int page,
+                             Model model) {
+
+        searchService.pageSettingByClusterNum(1, model, page, keyword);
+
+        model.addAttribute("serverExist", false);
+
+        return "search/searchResult";
+
+    }
+
+
 
 
 }
