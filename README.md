@@ -115,6 +115,7 @@ Related to: # 14
 
 ### ✨ 기술 설명
 SpringBoot, Spring Data JPA, JWT 등을 이용해 Back-end 개발
+<br>
 Thymeleaf(SSR) 를 이용해 정적 페이지 개발  
 
 ### 🔥 기술 스택
