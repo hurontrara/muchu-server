@@ -3,7 +3,7 @@ name: Build and Deploy Spring Boot to AWS EC2
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
 
   pull_request:
     branches : [ main, develop ]
@@ -28,7 +28,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-
+                    
       - name: Create config file(application.properties)
         run: |
           touch ./src/main/resources/application.properties
