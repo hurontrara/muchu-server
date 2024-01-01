@@ -2,6 +2,7 @@ package com.server.muchu.security.provider;
 
 import com.server.muchu.security.authentication.LoginAuthentication;
 import com.server.muchu.security.entity.SecurityUser;
+import com.server.muchu.security.error.CustomSecurityException;
 import com.server.muchu.security.service.SecurityUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +42,7 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 
     private void passwordCheck(String rawPassword, String encodedPassword) {
         if (!passwordEncoder.matches(rawPassword, encodedPassword))
-            throw new SecurityException(LOGIN_FAIL.getMessage());
+            throw new CustomSecurityException(LOGIN_FAIL.getMessage());
     }
 
 }
