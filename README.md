@@ -115,15 +115,17 @@ Related to: # 14
 
 ### ✨ 기술 설명
 SpringBoot, Spring Data JPA, JWT 등을 이용해 Back-end 개발
+Thymeleaf(SSR) 를 이용해 정적 페이지 개발  
 
 ### 🔥 기술 스택
 
 |  **항목**  |  **기술 스택**                          |
 | ---------- | --------------------------------------- |
 | 사용언어   | JAVA, SpringBoot                         |
-| DB         | Amazon RDS(MySQL), QueryDSL              |
+| DB         | Amazon RDS(MySQL), Redis                 |
 | 보안       | JWT, Spring Security                     |
 | CI/CD      | AWS EC2, AWS S3, AWS RDS, Github Actions |
+| 템플릿엔진  | Thymeleaf                                | 
 
 ### 🔅 코드 컨벤션
 
@@ -141,7 +143,14 @@ SpringBoot, Spring Data JPA, JWT 등을 이용해 Back-end 개발
 |  **항목**  |  **버전 정보**    |
 | ---------- | ------------------ |
 | JAVA       |  v11               |
-| SpringBoot |  v2.7.12           |
+| SpringBoot |  v2.7.17           |
+| SpringSecurity | v5.7.11        |
+| Lombok     |  v1.18.4           |
 
 
 <br>
+
+
+---
+
+🔗 [MUCHU(무추)](http://ec2-43-201-106-215.ap-northeast-2.compute.amazonaws.com:8080)
