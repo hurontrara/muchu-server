@@ -7,13 +7,11 @@
 
 검색 기능을 통해 키워드에 맞는 무한도전 짤을 추천해주고, 사용자가 좋아할 만한 짤을 추천해주는 서비스
 
-- 최소 기능 (MVP) ( 나중에 좀 더 자세히 )
+- 최소 기능 (MVP)
 
-  - 인증 권한 : 로그인 
+  - 인증 권한 : 로그인, 소셜로그인, 마이페이지, 아이디 찾기, 비밀번호 찾기(메일링)
    
   - 키워드를 통한 검색
- 
-  - 짤에 대한 선호 저장 (좋아요 기능)
 
 <br>
 
@@ -28,7 +26,7 @@
 | develop    | 개발 브랜치로 개발자들이 이 브랜치를 기준으로 각자 작업한 기능들을 Merge      |
 | feature    | 단위 기능을 개발하는 브랜치로 기능 개발이 완료되면 develop 브랜치에 Merge     |
 | release    | 배포를 위해 main 브랜치로 보내기 전에 먼저 QA(품질검사)를 하기위한 브랜치     |
-| hotfix     | master 브랜치로 배포를 했는데 버그가 생겼을 떄 긴급 수정하는 브랜치           |
+| hotfix     | main 브랜치로 배포를 했는데 버그가 생겼을 떄 긴급 수정하는 브랜치           |
 
 
 - Git Flow 과정
@@ -116,7 +114,7 @@ Related to: # 14
 ## Backend
 
 ### ✨ 기술 설명
-SpringBoot, Spring Data JPA, JWT 를 이용해 Back-end 개발
+SpringBoot, Spring Data JPA, JWT 등을 이용해 Back-end 개발
 
 ### 🔥 기술 스택
 
@@ -124,7 +122,6 @@ SpringBoot, Spring Data JPA, JWT 를 이용해 Back-end 개발
 | ---------- | --------------------------------------- |
 | 사용언어   | JAVA, SpringBoot                         |
 | DB         | Amazon RDS(MySQL), QueryDSL              |
-| API 명세   | Swagger                                  |
 | 보안       | JWT, Spring Security                     |
 | CI/CD      | AWS EC2, AWS S3, AWS RDS, Github Actions |
 
@@ -145,7 +142,6 @@ SpringBoot, Spring Data JPA, JWT 를 이용해 Back-end 개발
 | ---------- | ------------------ |
 | JAVA       |  v11               |
 | SpringBoot |  v2.7.12           |
-| Swagger    |  v2.9.2            |
 
 
 <br>
